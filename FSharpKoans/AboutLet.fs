@@ -14,11 +14,11 @@ module ``about let`` =
     [<Koan>]
     let LetBindsANameToAValue() =
         let x = 50
-        
-        AssertEquality x __
-    
+
+        AssertEquality x 50
+
     (* In F#, values created with let are inferred to have a type like
-       "int" for integer values, "string" for text values, and "bool" 
+       "int" for integer values, "string" for text values, and "bool"
        for true or false values. *)
     [<Koan>]
     let LetInfersTheTypesOfValuesWherePossible() =
@@ -28,7 +28,7 @@ module ``about let`` =
 
         let y = "a string"
         let expectedType = y.GetType()
-        AssertEquality expectedType typeof<FILL_ME_IN>
+        AssertEquality expectedType typeof<string>
 
     [<Koan>]
     let YouCanMakeTypesExplicit() =
@@ -38,17 +38,17 @@ module ``about let`` =
         let y:string = "forty two"
         let typeOfY = y.GetType()
 
-        AssertEquality typeOfX typeof<FILL_ME_IN>
-        AssertEquality typeOfY typeof<FILL_ME_IN>
+        AssertEquality typeOfX typeof<int>
+        AssertEquality typeOfY typeof<string>
 
-        (* You don't usually need to provide explicit type annotations types for 
-           local variables, but type annotations can come in handy in other 
+        (* You don't usually need to provide explicit type annotations types for
+           local variables, but type annotations can come in handy in other
            contexts as you'll see later. *)
-    
+
     [<Koan>]
     let FloatsAndInts() =
         (* Depending on your background, you may be surprised to learn that
-           in F#, integers and floating point numbers are different types. 
+           in F#, integers and floating point numbers are different types.
            In other words, the following is true. *)
         let x = 20
         let typeOfX = x.GetType()
@@ -68,18 +68,18 @@ module ``about let`` =
         let mutable x = 100
         x <- 200
 
-        AssertEquality x __
+        AssertEquality x 200
 
     [<Koan>]
     let YouCannotModifyALetBoundValueIfItIsNotMutable() =
         let x = 50
-        
+
         //What happens if you uncomment the following?
-        //
+        //Answer: Exception, we need to provide mutable to modify value
         //x <- 100
 
         //NOTE: Although you can't modify immutable values, it is possible
         //      to reuse the name of a value in some cases using "shadowing".
         let x = 100
-         
-        AssertEquality x __
+
+        AssertEquality x 100
